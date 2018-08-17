@@ -5,16 +5,23 @@
 Build image
 
 ```sh
-$ docker build hello .
+$ docker image build \
+ --tag helloworld/v:1.0 .
 ```
 
-Run container
+Run container in dev mode
 
 ```sh
-$ docker run -d -p 8080:80 hello
+$ docker container run \
+ --detach \
+ --publish 8080:80 \
+ --name hello \
+ --mount type=bind,source="$(pwd)/public",target=/var/www/html \
+ helloworld/v:1.0
 ```
 
-Access
+
+Access project
 
 ```sh
 http://localhost:8080
