@@ -12,22 +12,10 @@ Docker installation is required, see the [official installation docs](https://do
 $ git clone https://github.com/migueabellan/docker-php.git
 ```
 
-### Build the image
+### Run container
 
 ```sh
-$ docker image build \
- --tag helloworld/v:1.0 .
-```
-
-### Run container in dev mode
-
-```sh
-$ docker container run \
- --detach \
- --publish 8080:80 \
- --name hello \
- --mount type=bind,source="$(pwd)/public",target=/var/www/html \
- helloworld/v:1.0
+$ docker-compose up -d
 ```
 
 ### Access project
