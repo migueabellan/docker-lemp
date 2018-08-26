@@ -20,14 +20,6 @@ services:
     volumes:
       - ./web:/www
   
-  composer:
-    image: composer
-    container_name: composer
-    restart: 'no'
-    working_dir: /www
-    volumes:
-      - ./web:/www
-  
   mysql:
     build: services/mysql
     container_name: mysql
