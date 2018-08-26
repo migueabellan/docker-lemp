@@ -2,11 +2,29 @@ version: '3'
  
 services:
 
+  nginx:
+    build: services/nginx
+    container_name: nginx
+    restart: always
+    volumes:
+      - ./web:/www
+    ports:
+      - 80:80
+  
+  php-fpm:
+    build: services/phpfpm
+    container_name: phpfpm
+    restart: always
+    volumes:
+      - ./web:/www
+  
   mysql:
     build: services/mysql
     container_name: mysql
     restart: always
     command: --default-authentication-plugin=mysql_native_password
+    env_file:
+      - .env
     environment:
       - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
       - MYSQL_DATABASE=${MYSQL_DATABASE}
@@ -16,19 +34,3 @@ services:
       - ./services/mysql/data/:/var/lib/mysql
     ports:
       - 3306:3306
-
-  nginx:
-    build: services/nginx
-    container_name: nginx
-    restart: always
-    volumes:
-      - ./web/:/www
-    ports:
-      - 80:80
-  
-  php-fpm:
-    build: services/phpfpm
-    container_name: phpfpm
-    restart: always
-    volumes:
-      - ./web/:/www
