@@ -22,7 +22,7 @@ services:
     container_name: nginx
     restart: always
     volumes:
-      - ./public/:/www
+      - ./web/:/www
     ports:
       - 80:80
   
@@ -31,4 +31,4 @@ services:
     container_name: phpfpm
     restart: always
     volumes:
-      - ./public/:/www
+      - ./web/:/www
