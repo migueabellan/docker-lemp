@@ -12,10 +12,11 @@ Docker installation is required, see the [official installation docs](https://do
 $ git clone https://github.com/migueabellan/docker-php.git
 ```
 
-### Add enviroments
+### Install
 
 ```sh
 $ mv .env.dist .env
+$ docker-compose run composer install
 ```
 
 ### Run container

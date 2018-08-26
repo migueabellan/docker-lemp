@@ -6,6 +6,7 @@ services:
     build: services/nginx
     container_name: nginx
     restart: always
+    working_dir: /www
     volumes:
       - ./web:/www
     ports:
@@ -15,6 +16,15 @@ services:
     build: services/phpfpm
     container_name: phpfpm
     restart: always
+    working_dir: /www
+    volumes:
+      - ./web:/www
+  
+  composer:
+    image: composer
+    container_name: composer
+    restart: 'no'
+    working_dir: /www
     volumes:
       - ./web:/www
   
