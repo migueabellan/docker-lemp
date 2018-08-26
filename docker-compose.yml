@@ -1,11 +1,34 @@
-version: "3"
+version: '3'
  
 services:
-  apache:
-    image: php:7.2-apache
+
+  mysql:
+    build: services/mysql
+    container_name: mysql
+    restart: always
+    command: --default-authentication-plugin=mysql_native_password
+    environment:
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+      - MYSQL_DATABASE=${MYSQL_DATABASE}
+      - MYSQL_USER=${MYSQL_USER}
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
     volumes:
-      - ./public/:/var/www/html
-    expose:
-      - 8080
+      - ./services/mysql/data/:/var/lib/mysql
     ports:
-      - 8080:80
+      - 3306:3306
+
+  nginx:
+    build: services/nginx
+    container_name: nginx
+    restart: always
+    volumes:
+      - ./public/:/www
+    ports:
+      - 80:80
+  
+  php-fpm:
+    build: services/phpfpm
+    container_name: phpfpm
+    restart: always
+    volumes:
+      - ./public/:/www
