@@ -2,6 +2,11 @@ sudo: required
 
 env:
   DOCKER_COMPOSE_VERSION: 1.18.0
+  global:
+    - MYSQL_DATABASE='test'
+    - MYSQL_ROOT_PASSWORD='root'
+    - MYSQL_USER='dev'
+    - MYSQL_PASSWORD='dev'
 
 services:
   - docker
@@ -13,10 +18,10 @@ before_install:
   - chmod +x docker-compose
   - sudo mv docker-compose /usr/local/bin
   - docker-compose --version
+  - mv .env.dist .env
 
 install:
   - docker-compose up -d
-  - mv .env.dist .env
   - docker-compose run php-fpm composer update
 
 before_script:
