@@ -10,7 +10,7 @@ services:
     volumes:
       - ./web:/www
     ports:
-      - 80:80
+      - 1180:80
   
   php-fpm:
     build: services/phpfpm
@@ -20,4 +20,19 @@ services:
     volumes:
       - ./web:/www
   
-
+  mysql:
+    build: services/mysql
+    container_name: mysql
+    restart: always
+    command: --default-authentication-plugin=mysql_native_password
+    env_file:
+      - ./.env
+    environment:
+      - MYSQL_DATABASE=${MYSQL_DATABASE}
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+      - MYSQL_USER=${MYSQL_USER}
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+    volumes:
+      - ./services/mysql/data/:/var/lib/mysql
+    ports:
+      - 1106:3306
