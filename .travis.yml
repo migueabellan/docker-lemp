@@ -14,3 +14,13 @@ before_install:
   - sudo mv docker-compose /usr/local/bin
   - docker-compose --version
 
+install:
+  - docker-compose up -d
+  - mv .env.dist .env
+  - docker-compose run php-fpm composer update
+
+before_script:
+  
+
+script:
+  - docker-compose run php-fpm ./vendor/bin/phpunit ./tests
