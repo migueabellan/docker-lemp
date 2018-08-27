@@ -2,6 +2,9 @@
 
 > How to run php project with Docker CE
 
+[![Build Status](https://travis-ci.org/migueabellan/docker-php.svg?branch=master)](https://travis-ci.org/migueabellan/docker-php)
+
+
 ### Prerequisites
 
 Docker installation is required, see the [official installation docs](https://docs.docker.com/install/).
@@ -18,7 +21,7 @@ Run container
 
 ```sh
 $ docker-compose up -d
-http://localhost
+http://localhost:1180
 ```
 
 Install with composer
