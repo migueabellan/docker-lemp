@@ -2,7 +2,6 @@ sudo: required
 
 env:
   global:
-    - DOCKER_COMPOSE_VERSION: 1.18.0
     - MYSQL_DATABASE: test
     - MYSQL_ROOT_PASSWORD: root
     - MYSQL_USER: dev
@@ -11,22 +10,15 @@ env:
 services:
   - docker
 
-
 before_install:
-  - sudo apt update
-  - sudo rm /usr/local/bin/docker-compose
-  - curl -L https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-`uname -s`-`uname -m` > docker-compose
-  - chmod +x docker-compose
-  - sudo mv docker-compose /usr/local/bin
-  - docker-compose --version
   - mv .env.dist .env
 
 install:
   - docker-compose up -d
-  - docker-compose run php-fpm composer update
-
-before_script:
   - docker-compose ps
 
+before_script:
+  - docker-compose run phpfpm composer update
+
 script:
-  - docker-compose run php-fpm ./vendor/bin/phpunit ./tests
+  - docker-compose run phpfpm ./vendor/bin/phpunit ./tests

@@ -2,24 +2,6 @@ version: '3'
  
 services:
 
-  nginx:
-    build: services/nginx
-    container_name: nginx
-    restart: always
-    working_dir: /www
-    volumes:
-      - ./web:/www
-    ports:
-      - 1180:80
-  
-  php-fpm:
-    build: services/phpfpm
-    container_name: phpfpm
-    restart: always
-    working_dir: /www
-    volumes:
-      - ./web:/www
-  
   mysql:
     build: services/mysql
     container_name: mysql
@@ -36,3 +18,21 @@ services:
       - ./services/mysql/data/:/var/lib/mysql
     ports:
       - 1106:3306
+
+  nginx:
+    build: services/nginx
+    container_name: nginx
+    restart: always
+    working_dir: /www
+    volumes:
+      - ./web:/www
+    ports:
+      - 1180:80
+
+  phpfpm:
+    build: services/phpfpm
+    container_name: phpfpm
+    restart: always
+    working_dir: /www
+    volumes:
+      - ./web:/www

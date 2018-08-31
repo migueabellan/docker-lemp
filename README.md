@@ -17,23 +17,33 @@ Donwload using git
 $ git clone https://github.com/migueabellan/docker-php.git
 ```
 
-Run container
+Create a `.env`
 
 ```sh
-$ docker-compose up -d
-http://localhost:1180
+$ cp .env.dist .env
 ```
 
-Install with composer
+Build and run container
 
 ```sh
-$ mv .env.dist .env
+$ docker-compose build
+$ docker-compose up -d
+```
 
-$ docker-compose run php-fpm composer update
+Install with `composer`
+
+```sh
+$ docker-compose run phpfpm composer install
+```
+
+Access project
+
+```sh
+http://localhost:1180
 ```
 
 Units tests
 
 ```sh
-$ docker-compose run php-fpm ./vendor/bin/phpunit ./tests
+$ docker-compose run phpfpm ./vendor/bin/phpunit ./tests
 ```
