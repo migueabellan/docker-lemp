@@ -17,7 +17,7 @@ services:
     volumes:
       - ./services/mysql/data/:/var/lib/mysql:rw
     ports:
-      - 3306:3306
+      - ${MYSQL_PORT}:3306
 
   nginx:
     build: services/nginx
@@ -27,7 +27,7 @@ services:
     volumes:
       - ./web:/www
     ports:
-      - 80:80
+      - ${NGINX_PORT}:80
 
   phpfpm:
     build: services/phpfpm
