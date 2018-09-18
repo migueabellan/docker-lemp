@@ -18,7 +18,7 @@ install:
   - docker-compose ps
 
 before_script:
-  - docker-compose run phpfpm composer update
+  - docker-compose run --rm phpfpm bash -c "cd test/ && composer update"
 
 script:
-  - docker-compose run phpfpm ./vendor/bin/phpunit ./tests
+  - docker-compose run --rm phpfpm bash -c "cd test/ && ./vendor/bin/phpunit ./tests"
