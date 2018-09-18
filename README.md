@@ -9,6 +9,12 @@
 
 Docker installation is required, see the [official installation docs](https://docs.docker.com/install/).
 
+* [Nginx](https://hub.docker.com/_/nginx/)
+* [MySQL](https://hub.docker.com/_/mysql/)
+* [PHP-FPM](https://hub.docker.com/r/phpdockerio/php72-fpm/)
+* [PHPMyAdmin](https://hub.docker.com/r/phpmyadmin/phpmyadmin/)
+
+
 ### Download and install
 
 Donwload using git
@@ -29,3 +35,11 @@ Build and run container
 $ docker-compose build
 $ docker-compose up -d
 ```
+
+This project use the following ports:
+
+| Server     | Port |
+|------------|------|
+| Nginx      | 80 |
+| MySQL      | 3306 |
+| PHPMyAdmin | 8080 |
