@@ -1,8 +1,8 @@
-# Docker NGINX PHP72 MySQL
+# Docker NGINX - MySQL PHP72
 
-> How to run php project with Docker CE
+> How to run LEMP (NGINX - MySQL PHP72) project with Docker CE
 
-[![Build Status](https://travis-ci.org/migueabellan/docker-php.svg?branch=master)](https://travis-ci.org/migueabellan/docker-php)
+[![Build Status](https://travis-ci.org/migueabellan/docker-lemp.svg?branch=master)](https://travis-ci.org/migueabellan/docker-lemp)
 
 
 ### Prerequisites
@@ -14,7 +14,7 @@ Docker installation is required, see the [official installation docs](https://do
 Donwload using git
 
 ```sh
-$ git clone https://github.com/migueabellan/docker-php.git
+$ git clone https://github.com/migueabellan/docker-lemp.git
 ```
 
 Create a `.env`
@@ -28,22 +28,4 @@ Build and run container
 ```sh
 $ docker-compose build
 $ docker-compose up -d
-```
-
-Install with `composer`
-
-```sh
-$ docker-compose run phpfpm composer install
-```
-
-Access project
-
-```sh
-http://localhost:1180
-```
-
-Units tests
-
-```sh
-$ docker-compose run phpfpm ./vendor/bin/phpunit ./tests
 ```
