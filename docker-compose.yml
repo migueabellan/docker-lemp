@@ -15,9 +15,9 @@ services:
       - MYSQL_USER=${MYSQL_USER}
       - MYSQL_PASSWORD=${MYSQL_PASSWORD}
     volumes:
-      - ./services/mysql/data/:/var/lib/mysql
+      - ./services/mysql/data/:/var/lib/mysql:rw
     ports:
-      - 1106:3306
+      - 3306:3306
 
   nginx:
     build: services/nginx
@@ -27,7 +27,7 @@ services:
     volumes:
       - ./web:/www
     ports:
-      - 1180:80
+      - 80:80
 
   phpfpm:
     build: services/phpfpm
